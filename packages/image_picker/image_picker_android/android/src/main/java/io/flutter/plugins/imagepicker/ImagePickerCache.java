@@ -106,11 +106,9 @@ class ImagePickerCache {
   void saveResult(
       @Nullable ArrayList<String> path, @Nullable String errorCode, @Nullable String errorMessage) {
 
-    Set<String> imageSet = new HashSet<>();
-    imageSet.addAll(path);
     SharedPreferences.Editor editor = prefs.edit();
     if (path != null) {
-      editor.putStringSet(FLUTTER_IMAGE_PICKER_IMAGE_PATH_KEY, imageSet);
+      editor.putStringSet(FLUTTER_IMAGE_PICKER_IMAGE_PATH_KEY, new HashSet<>(path));
     }
     if (errorCode != null) {
       editor.putString(SHARED_PREFERENCE_ERROR_CODE_KEY, errorCode);
